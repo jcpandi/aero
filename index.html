@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>AERO/RUN — Series 01 Performance Landing Page</title>
+  <title>AERO/RUN — Series 01 Performance 3D Landing Page</title>
   <meta name="description" content="A 214-gram silhouette with visible energy-return foam and a carbon plate calibrated to convert every footstrike into forward propulsion." />
   <link rel="stylesheet" href="/style.css" />
 </head>
@@ -26,7 +26,7 @@
       </div>
     </header>
 
-    <!-- SECTION 0: HERO -->
+    <!-- SECTION 0: HERO WITH 3D ROTATING SHOE -->
     <section class="hero-section" id="hero" aria-label="AERO/RUN Main Campaign">
       <!-- Background Video & Poster Canvas -->
       <div class="video-stage">
@@ -45,6 +45,15 @@
         </video>
         <!-- Overlay subtle darkening to keep 38% left region clear for typography contrast -->
         <div class="stage-vignette" aria-hidden="true"></div>
+      </div>
+
+      <!-- 3D Interactive Shoe Canvas Stage -->
+      <div class="canvas-3d-stage" id="canvas-3d-container">
+        <canvas id="shoe-3d-canvas"></canvas>
+        <div class="canvas-3d-hint">
+          <span class="hint-icon">↺</span>
+          <span class="hint-text">DRAG TO ROTATE 3D SILHOUETTE</span>
+        </div>
       </div>
 
       <!-- SVG Overlay for Midsole Ellipses & Traveling Chartreuse Dot -->
@@ -99,7 +108,7 @@
       <!-- Hotspots Overlay Container (Interactive Hotspots over Shoe) -->
       <div class="hotspots-layer" id="hotspots-container">
         <!-- Hotspot 1: Foam -->
-        <div class="hotspot-item reveal-on-scroll reveal-scale" style="top: 61%; left: 63.5%;" data-target="foam">
+        <div class="hotspot-item reveal-on-scroll reveal-scale" id="hotspot-foam" style="top: 61%; left: 63.5%;" data-target="foam">
           <button class="hotspot-trigger" aria-expanded="false" aria-controls="tooltip-foam" aria-label="Foam Technology Details">
             <span class="hotspot-pulse"></span>
             <span class="hotspot-dot"></span>
@@ -119,7 +128,7 @@
         </div>
 
         <!-- Hotspot 2: Carbon Plate -->
-        <div class="hotspot-item reveal-on-scroll reveal-scale reveal-delay-1" style="top: 52%; left: 74.5%;" data-target="plate">
+        <div class="hotspot-item reveal-on-scroll reveal-scale reveal-delay-1" id="hotspot-plate" style="top: 52%; left: 74.5%;" data-target="plate">
           <button class="hotspot-trigger" aria-expanded="false" aria-controls="tooltip-plate" aria-label="Carbon Plate Details">
             <span class="hotspot-pulse"></span>
             <span class="hotspot-dot"></span>
@@ -139,7 +148,7 @@
         </div>
 
         <!-- Hotspot 3: Upper -->
-        <div class="hotspot-item reveal-on-scroll reveal-scale reveal-delay-2" style="top: 42%; left: 69%;" data-target="upper">
+        <div class="hotspot-item reveal-on-scroll reveal-scale reveal-delay-2" id="hotspot-upper" style="top: 42%; left: 69%;" data-target="upper">
           <button class="hotspot-trigger" aria-expanded="false" aria-controls="tooltip-upper" aria-label="Upper Mesh Details">
             <span class="hotspot-pulse"></span>
             <span class="hotspot-dot"></span>
