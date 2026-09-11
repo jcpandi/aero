@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AERO/RUN — Series 01 Performance Landing Page</title>
+  <meta name="description" content="A 214-gram silhouette with visible energy-return foam and a carbon plate calibrated to convert every footstrike into forward propulsion." />
+  <link rel="stylesheet" href="/style.css" />
+</head>
+<body>
+  <div class="page-wrapper">
+    <!-- Header Navbar (68px) -->
+    <header class="section-header">
+      <div class="header-inner">
+        <a href="#hero" class="section-brand" aria-label="AERO/RUN Home">AERO/RUN</a>
+        <nav class="section-nav" aria-label="Main Navigation">
+          <ul class="nav-links">
+            <li><a href="#diseno" class="nav-link">Design</a></li>
+            <li><a href="#tecnologia" class="nav-link">Technology</a></li>
+            <li><a href="#pruebas" class="nav-link">Testing</a></li>
+          </ul>
+        </nav>
+        <div class="header-action">
+          <button type="button" class="btn-secondary" id="btn-find-size">Find My Size</button>
+        </div>
+      </div>
+    </header>
+
+    <!-- SECTION 0: HERO -->
+    <section class="hero-section" id="hero" aria-label="AERO/RUN Main Campaign">
+      <!-- Background Video & Poster Canvas -->
+      <div class="video-stage">
+        <video 
+          id="hero-video" 
+          poster="/media/aero-run-product.png"
+          autoplay 
+          muted 
+          loop 
+          playsinline
+          aria-hidden="true"
+        >
+          <source src="/media/aero-run-loop.mp4" type="video/mp4" />
+          <source src="https://media.dinamosites.com/library/v1/video/aero-run-loop-e45a8619dfea.mp4" type="video/mp4" />
+          Your browser does not support HTML video playback.
+        </video>
+        <!-- Overlay subtle darkening to keep 38% left region clear for typography contrast -->
+        <div class="stage-vignette" aria-hidden="true"></div>
+      </div>
+
+      <!-- SVG Overlay for Midsole Ellipses & Traveling Chartreuse Dot -->
+      <svg class="shoe-overlay-svg" id="shoe-svg" viewBox="0 0 1000 650" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+        <defs>
+          <filter id="glow-chartreuse" x="-20%" y="-20%" width="140%" height="140%">
+            <feGaussianBlur stdDeviation="3.5" result="blur" />
+            <feMerge>
+              <feMergeNode in="blur" />
+              <feMergeNode in="SourceGraphic" />
+            </feMerge>
+          </filter>
+          <linearGradient id="ellipse-grad-1" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#CCFF00" stop-opacity="0.85" />
+            <stop offset="50%" stop-color="#CCFF00" stop-opacity="0.25" />
+            <stop offset="100%" stop-color="#CCFF00" stop-opacity="0.75" />
+          </linearGradient>
+          <linearGradient id="ellipse-grad-2" x1="100%" y1="0%" x2="0%" y2="100%">
+            <stop offset="0%" stop-color="#FFFFFF" stop-opacity="0.45" />
+            <stop offset="100%" stop-color="#FFFFFF" stop-opacity="0.05" />
+          </linearGradient>
+        </defs>
+
+        <!-- Ellipse 1 (Primary orbital stroke around midsole) -->
+        <path 
+          id="ellipse-path-primary"
+          class="ellipse-path primary-ellipse" 
+          d="M 520,390 C 530,285 750,260 840,325 C 920,385 860,490 730,495 C 590,500 510,460 520,390 Z"
+          pathLength="1"
+          fill="none"
+          stroke="url(#ellipse-grad-1)"
+          stroke-width="1.75"
+        />
+
+        <!-- Ellipse 2 (Secondary angled orbital stroke - hidden on mobile) -->
+        <path 
+          id="ellipse-path-secondary"
+          class="ellipse-path secondary-ellipse" 
+          d="M 560,430 C 500,340 680,260 820,290 C 940,315 900,430 790,460 C 660,495 610,480 560,430 Z"
+          pathLength="1"
+          fill="none"
+          stroke="url(#ellipse-grad-2)"
+          stroke-width="1.2"
+          stroke-dasharray="0.08 0.04"
+        />
+
+        <!-- Chartreuse Dot traveling along primary ellipse -->
+        <circle id="chartreuse-dot" r="5" fill="#CCFF00" filter="url(#glow-chartreuse)" />
+        <circle id="chartreuse-dot-core" r="2" fill="#FFFFFF" />
+      </svg>
+
+      <!-- Hotspots Overlay Container (Interactive Hotspots over Shoe) -->
+      <div class="hotspots-layer" id="hotspots-container">
+        <!-- Hotspot 1: Foam -->
+        <div class="hotspot-item reveal-on-scroll reveal-scale" style="top: 61%; left: 63.5%;" data-target="foam">
+          <button class="hotspot-trigger" aria-expanded="false" aria-controls="tooltip-foam" aria-label="Foam Technology Details">
+            <span class="hotspot-pulse"></span>
+            <span class="hotspot-dot"></span>
+          </button>
+          <div class="hotspot-card tooltip-foam" id="tooltip-foam" role="region" aria-label="Foam Information">
+            <div class="card-header">
+              <span class="card-tag">IMPACT TECHNOLOGY</span>
+              <span class="card-code">EPS-01</span>
+            </div>
+            <h3 class="card-title">NITRO-RESPONSE FOAM</h3>
+            <p class="card-desc">Microcellular matrix with 0.11 g/cm³ density. Absorbs initial impact and maximizes energy return during toe-off.</p>
+            <div class="card-metric">
+              <span class="metric-val">+68%</span>
+              <span class="metric-lbl">KINETIC RETURN</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Hotspot 2: Carbon Plate -->
+        <div class="hotspot-item reveal-on-scroll reveal-scale reveal-delay-1" style="top: 52%; left: 74.5%;" data-target="plate">
+          <button class="hotspot-trigger" aria-expanded="false" aria-controls="tooltip-plate" aria-label="Carbon Plate Details">
+            <span class="hotspot-pulse"></span>
+            <span class="hotspot-dot"></span>
+          </button>
+          <div class="hotspot-card tooltip-plate" id="tooltip-plate" role="region" aria-label="Carbon Plate Information">
+            <div class="card-header">
+              <span class="card-tag">STRUCTURAL CORE</span>
+              <span class="card-code">CARB-3D</span>
+            </div>
+            <h3 class="card-title">3D CARBON VECTOR PLATE</h3>
+            <p class="card-desc">Calibrated longitudinal stiffness geometry designed to guide stride transition and propel forward momentum.</p>
+            <div class="card-metric">
+              <span class="metric-val">3D BIOM</span>
+              <span class="metric-lbl">TORSIONAL STABILITY</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Hotspot 3: Upper -->
+        <div class="hotspot-item reveal-on-scroll reveal-scale reveal-delay-2" style="top: 42%; left: 69%;" data-target="upper">
+          <button class="hotspot-trigger" aria-expanded="false" aria-controls="tooltip-upper" aria-label="Upper Mesh Details">
+            <span class="hotspot-pulse"></span>
+            <span class="hotspot-dot"></span>
+          </button>
+          <div class="hotspot-card tooltip-upper" id="tooltip-upper" role="region" aria-label="Upper Information">
+            <div class="card-header">
+              <span class="card-tag">ERGONOMIC WRAP</span>
+              <span class="card-code">KNIT-214</span>
+            </div>
+            <h3 class="card-title">3D MICRO-KNIT UPPER</h3>
+            <p class="card-desc">Ultra-breathable seamless monofilament mesh locking down the midfoot while allowing natural forefoot splay.</p>
+            <div class="card-metric">
+              <span class="metric-val">214 G</span>
+              <span class="metric-lbl">TOTAL SILHOUETTE WEIGHT</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Main Left Hero Content Box (4vw left padding, 24%-29% top offset) -->
+      <div class="hero-content">
+        <div class="series-tag reveal-on-scroll reveal-left">SERIES 01 / PERFORMANCE</div>
+        <h1 class="section-title reveal-on-scroll reveal-left reveal-delay-1">SPEED CHANGES SHAPE.</h1>
+        <p class="section-copy reveal-on-scroll reveal-left reveal-delay-2">
+          A 214-gram silhouette featuring visible energy-return foam and a carbon plate calibrated to convert every footstrike into forward propulsion.
+        </p>
+        <div class="cta-row reveal-on-scroll reveal-left reveal-delay-3">
+          <button type="button" class="btn-primary" id="btn-discover">Explore A/R 01</button>
+        </div>
+
+        <!-- Technical Rail -->
+        <div class="section-rail reveal-on-scroll reveal-left reveal-delay-3" aria-label="Technical Specifications">
+          <div class="rail-item">
+            <span class="rail-label">WEIGHT</span>
+            <span class="rail-value">214 G</span>
+          </div>
+          <div class="rail-divider" aria-hidden="true"></div>
+          <div class="rail-item">
+            <span class="rail-label">GEOMETRY</span>
+            <span class="rail-value">DROP 7 MM</span>
+          </div>
+          <div class="rail-divider" aria-hidden="true"></div>
+          <div class="rail-item">
+            <span class="rail-label">RETURN</span>
+            <span class="rail-value">68%</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 1: DESIGN & ARCHITECTURE -->
+    <section class="landing-section section-design" id="diseno" aria-label="Design & Architecture">
+      <div class="section-container">
+        <div class="section-header-block reveal-on-scroll">
+          <span class="section-kicker">01 // DESIGN & BIOMECHANICS</span>
+          <h2 class="section-heading">ENGINEERED KINETICS.</h2>
+          <p class="section-subtext">Every millimeter of the AERO/RUN 01 silhouette is optimized to remove structural drag and deliver immediate kinematic rebound.</p>
+        </div>
+
+        <div class="design-grid">
+          <!-- Card 1 -->
+          <div class="design-card reveal-on-scroll reveal-delay-1">
+            <div class="card-num">01</div>
+            <div class="card-content">
+              <span class="card-badge">NITRO MATRIX</span>
+              <h3 class="card-heading">SUPERCRITICAL MIDSOLE</h3>
+              <p class="card-text">Formulated using nitrogen infusion under 180 bar pressure. Creates a micro-cellular foam with 0.11 g/cm³ density that yields uncompromised dampening with immediate energy return.</p>
+              <div class="card-stat-footer">
+                <span class="stat-num">0.11</span>
+                <span class="stat-unit">G/CM³ DENSITY</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 2 -->
+          <div class="design-card feature-highlight reveal-on-scroll reveal-delay-2">
+            <div class="card-num">02</div>
+            <div class="card-content">
+              <span class="card-badge">CARBON CORE</span>
+              <h3 class="card-heading">CALIBRATED VECTOR PLATE</h3>
+              <p class="card-text">A full-length 3D carbon fiber plate custom-contoured to match the plantar fascia. The engineered curvature stiffness maximizes lever action during heel-to-toe transition.</p>
+              <div class="card-stat-footer">
+                <span class="stat-num">3D</span>
+                <span class="stat-unit">BIOM CURVATURE</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 3 -->
+          <div class="design-card reveal-on-scroll reveal-delay-3">
+            <div class="card-num">03</div>
+            <div class="card-content">
+              <span class="card-badge">LOCKDOWN MESH</span>
+              <h3 class="card-heading">MONOFILAMENT UPPER</h3>
+              <p class="card-text">Seamless 3D micro-knit upper engineered with zonal elasticity. Provides rigid lateral support across the midfoot while giving the forefoot full anatomical expansion.</p>
+              <div class="card-stat-footer">
+                <span class="stat-num">214</span>
+                <span class="stat-unit">GRAMS TOTAL</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 2: TECHNOLOGY & MATERIALS -->
+    <section class="landing-section section-tech" id="tecnologia" aria-label="Technology & Materials">
+      <div class="section-container">
+        <div class="tech-split-wrapper">
+          <!-- Tech Visual Card -->
+          <div class="tech-visual-card reveal-on-scroll reveal-left">
+            <img src="/media/aero_carbon_plate_detail.jpg" alt="Carbon Plate Detail" class="tech-img" loading="lazy" />
+            <div class="visual-overlay-tag">
+              <span class="overlay-title">CARBON VECTOR PLATE 3D</span>
+              <span class="overlay-sub">STRUCTURAL RIGIDITY MAP</span>
+            </div>
+          </div>
+
+          <!-- Tech Specs Content -->
+          <div class="tech-details">
+            <div class="reveal-on-scroll reveal-right">
+              <span class="section-kicker">02 // TELEMETRY & SPECS</span>
+              <h2 class="section-heading">THE 214-GRAM TELEMETRY.</h2>
+              <p class="section-subtext">Precision engineering measured down to the milligram. Built for high-velocity racing and threshold workouts.</p>
+            </div>
+
+            <div class="telemetry-grid">
+              <div class="telemetry-box reveal-on-scroll reveal-right reveal-delay-1">
+                <span class="tel-value">68%</span>
+                <span class="tel-label">ENERGY RETURN</span>
+                <span class="tel-desc">Laboratory measured rebound efficiency ratio.</span>
+              </div>
+
+              <div class="telemetry-box reveal-on-scroll reveal-right reveal-delay-2">
+                <span class="tel-value">7 MM</span>
+                <span class="tel-label">HEEL-TO-TOE DROP</span>
+                <span class="tel-desc">Optimized posture for midfoot strike efficiency.</span>
+              </div>
+
+              <div class="telemetry-box reveal-on-scroll reveal-right reveal-delay-2">
+                <span class="tel-value">214 G</span>
+                <span class="tel-label">MASS WEIGHT</span>
+                <span class="tel-desc">Featherweight construction without durability loss.</span>
+              </div>
+
+              <div class="telemetry-box reveal-on-scroll reveal-right reveal-delay-3">
+                <span class="tel-value">100%</span>
+                <span class="tel-label">RECYCLED KNIT</span>
+                <span class="tel-desc">Sustainable high-tenacity monofilament yarn.</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 3: TESTING & LAB VALIDATION -->
+    <section class="landing-section section-testing" id="pruebas" aria-label="Testing & Lab Validation">
+      <div class="section-container">
+        <div class="section-header-block text-center reveal-on-scroll">
+          <span class="section-kicker">03 // LAB & FIELD VERIFICATION</span>
+          <h2 class="section-heading">VALIDATED IN THE LAB.<br/>PROVEN ON ASPHALT.</h2>
+          <p class="section-subtext">Subjected to over 12,000 kilometers of high-intensity threshold testing across elite marathon runners and biomechanics institutes.</p>
+        </div>
+
+        <div class="testing-hero-card reveal-on-scroll reveal-scale">
+          <div class="testing-img-container">
+            <img src="/media/aero_runner_testing.jpg" alt="Marathon Runner Testing" class="testing-img" loading="lazy" />
+            <div class="testing-badge">ATHLETE TELEMETRY LIVE</div>
+          </div>
+          <div class="testing-info">
+            <div class="quote-mark">“</div>
+            <blockquote class="athlete-quote">
+              “The toe-off transition in the A/R 01 feels completely frictionless. It doesn’t just cushion your impact—it aggressively launches your leg into the next stride cycle.”
+            </blockquote>
+            <div class="athlete-meta">
+              <span class="athlete-name">MARCUS V. HANSEN</span>
+              <span class="athlete-role">MARATHON PACESETTER & LAB TESTER</span>
+            </div>
+
+            <div class="lab-metrics-row">
+              <div class="lab-metric">
+                <span class="lab-val">12,400 KM</span>
+                <span class="lab-lbl">AGGREGATE ROAD DISTANCE</span>
+              </div>
+              <div class="lab-metric">
+                <span class="lab-val">-4.2%</span>
+                <span class="lab-lbl">OXYGEN COST REDUCTION</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FOOTER SECTION -->
+    <footer class="section-footer">
+      <div class="footer-cta-banner reveal-on-scroll reveal-scale">
+        <div class="banner-inner">
+          <h2 class="cta-heading">READY TO ELEVATE YOUR PACE?</h2>
+          <p class="cta-sub">Join the early allocation list for the initial production run of AERO/RUN 01.</p>
+          <div class="cta-buttons">
+            <button type="button" class="btn-primary">Order A/R 01</button>
+            <button type="button" class="btn-secondary">Download Tech Sheet</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-main">
+        <div class="footer-container">
+          <div class="footer-grid">
+            <!-- Brand Column -->
+            <div class="footer-col brand-col reveal-on-scroll reveal-delay-1">
+              <a href="#hero" class="section-brand">AERO/RUN</a>
+              <p class="footer-desc">High-performance athletic footwear calibrated for explosive kinetic propulsion, biomechanical efficiency, and uncompromised speed.</p>
+              <div class="brand-code">SERIES 01 // SPEC-RELEASE 2026</div>
+            </div>
+
+            <!-- Links Column 1 -->
+            <div class="footer-col reveal-on-scroll reveal-delay-2">
+              <h4 class="footer-title">NAVIGATION</h4>
+              <ul class="footer-links">
+                <li><a href="#hero">Overview</a></li>
+                <li><a href="#diseno">Design Architecture</a></li>
+                <li><a href="#tecnologia">Material Telemetry</a></li>
+                <li><a href="#pruebas">Lab Verification</a></li>
+              </ul>
+            </div>
+
+            <!-- Links Column 2 -->
+            <div class="footer-col reveal-on-scroll reveal-delay-2">
+              <h4 class="footer-title">SPECIFICATIONS</h4>
+              <ul class="footer-links">
+                <li><a href="#tecnologia">Nitro-Response Foam</a></li>
+                <li><a href="#tecnologia">3D Carbon Plate</a></li>
+                <li><a href="#tecnologia">214g Monofilament</a></li>
+                <li><a href="#hero">Sizing Matrix</a></li>
+              </ul>
+            </div>
+
+            <!-- Newsletter Column -->
+            <div class="footer-col newsletter-col reveal-on-scroll reveal-delay-3">
+              <h4 class="footer-title">DROP ALERTS</h4>
+              <p class="footer-desc">Subscribe to receive exclusive access to performance drops and lab telemetry reports.</p>
+              <form class="newsletter-form" onsubmit="event.preventDefault(); alert('Subscribed to AERO/RUN drop alerts.');">
+                <input type="email" placeholder="Enter your email" required class="newsletter-input" />
+                <button type="submit" class="btn-primary btn-sm">Subscribe</button>
+              </form>
+            </div>
+          </div>
+
+          <div class="footer-bottom">
+            <div class="copyright">© 2026 AERO/RUN LABS. ALL RIGHTS RESERVED.</div>
+            <div class="legal-links">
+              <a href="#">Privacy Policy</a>
+              <a href="#">Terms of Performance</a>
+              <a href="#">Security Telemetry</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+  </div>
+
+  <script type="module" src="/main.js"></script>
+</body>
+</html>
