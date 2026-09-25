@@ -1,10 +1,11 @@
 /* ==========================================================================
    AERO/RUN — High-Performance Landing Page Engine
-   Interactive Mechanics & Telemetry Observer
+   Interactive Mechanics, Animations & Telemetry Observer
    ========================================================================== */
 
 document.addEventListener('DOMContentLoaded', () => {
   initVideoController();
+  initChartreuseDotAnimation();
   initHotspotInteractions();
   initHeroObserver();
   initNavObserver();
@@ -42,7 +43,61 @@ function initVideoController() {
 }
 
 /**
- * 2. Interactive Hotspots Controller
+ * 2. Chartreuse Dot SVG Path Animation using getPointAtLength
+ */
+let animFrameId = null;
+let pathDistance = 0;
+let isAnimationRunning = true;
+
+function initChartreuseDotAnimation() {
+  const path = document.getElementById('ellipse-path-primary');
+  const dot = document.getElementById('chartreuse-dot');
+  const dotCore = document.getElementById('chartreuse-dot-core');
+
+  if (!path || !dot || !dotCore) return;
+
+  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (prefersReducedMotion) {
+    isAnimationRunning = false;
+    try {
+      const initialPt = path.getPointAtLength(0);
+      dot.setAttribute('cx', initialPt.x);
+      dot.setAttribute('cy', initialPt.y);
+      dotCore.setAttribute('cx', initialPt.x);
+      dotCore.setAttribute('cy', initialPt.y);
+    } catch (e) {}
+    return;
+  }
+
+  let totalLength = 0;
+  try {
+    totalLength = path.getTotalLength();
+  } catch (e) {
+    return;
+  }
+
+  const speed = 0.6;
+
+  function step() {
+    if (!isAnimationRunning) return;
+
+    pathDistance = (pathDistance + speed) % totalLength;
+    try {
+      const point = path.getPointAtLength(pathDistance);
+      dot.setAttribute('cx', point.x);
+      dot.setAttribute('cy', point.y);
+      dotCore.setAttribute('cx', point.x);
+      dotCore.setAttribute('cy', point.y);
+    } catch (e) {}
+
+    animFrameId = requestAnimationFrame(step);
+  }
+
+  animFrameId = requestAnimationFrame(step);
+}
+
+/**
+ * 3. Interactive Hotspots Controller
  */
 function initHotspotInteractions() {
   const hotspotItems = document.querySelectorAll('.hotspot-item');
@@ -95,7 +150,7 @@ function initHotspotInteractions() {
 }
 
 /**
- * 3. IntersectionObserver for Hero Section Video
+ * 4. IntersectionObserver for Hero Section Video & Dot Loop
  */
 function initHeroObserver() {
   const heroSection = document.getElementById('hero');
@@ -109,9 +164,17 @@ function initHeroObserver() {
         if (video && video.paused && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
           video.play().catch(() => {});
         }
+        if (!isAnimationRunning) {
+          isAnimationRunning = true;
+          initChartreuseDotAnimation();
+        }
       } else {
         if (video && !video.paused) {
           video.pause();
+        }
+        isAnimationRunning = false;
+        if (animFrameId) {
+          cancelAnimationFrame(animFrameId);
         }
       }
     });
